@@ -18,7 +18,7 @@ public class StateFulLayout extends LinearLayout {
     public final static int CONTENT = 10001;
     public final static int EMPTY = 10002;
     public final static int NETERROR = 10003;
-    View view;
+    ViewGroup view;
     View myView;
     LinearLayout refresh;
     ImageView loading;
@@ -89,7 +89,7 @@ public class StateFulLayout extends LinearLayout {
 
     private void cheakView() {
         if (view == null) {
-            view = getChildAt(0);
+            view = (ViewGroup) getChildAt(0);
         }
     }
 
