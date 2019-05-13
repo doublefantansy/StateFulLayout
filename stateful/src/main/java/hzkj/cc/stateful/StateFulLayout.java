@@ -54,6 +54,7 @@ public class StateFulLayout extends LinearLayout {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         myView.setLayoutParams(layoutParams);
         addView(myView);
+        showState(LOADING);
     }
 
     public void showState(int status) {
