@@ -21,7 +21,7 @@ public class StateFulLayout extends LinearLayout {
     ViewGroup view;
     View myView;
     LinearLayout refresh;
-    ImageView loading;
+    ImageView loadingImage;
     ImageView imageView;
     TextView textView;
     RefreshListenner refreshListenner;
@@ -42,7 +42,7 @@ public class StateFulLayout extends LinearLayout {
                 .inflate(R.layout.empty, null);
         imageView = myView.findViewById(R.id.image);
         textView = myView.findViewById(R.id.message);
-        loading = myView.findViewById(R.id.loading);
+        loadingImage = myView.findViewById(R.id.loadingImage);
         refresh = myView.findViewById(R.id.refresh);
         refresh.setOnClickListener(new OnClickListener() {
             @Override
@@ -55,6 +55,7 @@ public class StateFulLayout extends LinearLayout {
         myView.setLayoutParams(layoutParams);
         addView(myView);
         showState(LOADING);
+        refreshListenner.refresh();
     }
 
     public void showState(int status) {
