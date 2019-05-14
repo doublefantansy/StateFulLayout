@@ -18,8 +18,8 @@ public class StateFulLayout extends LinearLayout {
     public final static int CONTENT = 10001;
     public final static int EMPTY = 10002;
     public final static int NETERROR = 10003;
-    ViewGroup view;
     View myView;
+    View view;
     LinearLayout refresh;
     ImageView loadingImage;
     ImageView imageView;
@@ -35,7 +35,8 @@ public class StateFulLayout extends LinearLayout {
         super(context, attrs);
     }
 
-    public void init(RefreshListenner listenner) {
+    public void init(RefreshListenner listenner, View view) {
+        this.view = view;
         refreshListenner = listenner;
         this.setOrientation(VERTICAL);
         myView = LayoutInflater.from(getContext())
@@ -55,11 +56,10 @@ public class StateFulLayout extends LinearLayout {
         myView.setLayoutParams(layoutParams);
         addView(myView);
         showState(LOADING);
-        refreshListenner.refresh();
+//        refreshListenner.refresh();
     }
 
     public void showState(int status) {
-        cheakView();
         if (status == CONTENT) {
             view.setVisibility(VISIBLE);
             myView.setVisibility(GONE);
@@ -86,12 +86,6 @@ public class StateFulLayout extends LinearLayout {
                     textView.setTextColor(getResources().getColor(R.color.red));
                 }
             }
-        }
-    }
-
-    private void cheakView() {
-        if (view == null) {
-            view = (ViewGroup) getChildAt(0);
         }
     }
 
