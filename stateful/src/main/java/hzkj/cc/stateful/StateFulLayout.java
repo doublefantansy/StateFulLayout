@@ -67,7 +67,7 @@ public class StateFulLayout extends LinearLayout {
                 imageView.setRotation((Float) animation.getAnimatedValue());
             }
         });
-        showState(LOADING);
+//        showState(LOADING);
 //        refreshListenner.refresh();
     }
 
