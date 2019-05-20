@@ -1,10 +1,12 @@
 package hzkj.cc.stateful;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +27,7 @@ public class StateFulLayout extends LinearLayout {
     ImageView imageView;
     TextView textView;
     RefreshListenner refreshListenner;
-    private ValueAnimator valueAnimator;
+    ValueAnimator valueAnimator;
 
     public StateFulLayout(Context context) {
         super(context);
@@ -55,6 +57,16 @@ public class StateFulLayout extends LinearLayout {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         myView.setLayoutParams(layoutParams);
         addView(myView);
+        valueAnimator = ValueAnimator.ofFloat(0f, 360f);
+        valueAnimator.setDuration(1000);
+        valueAnimator.setInterpolator(new LinearInterpolator());
+        valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                imageView.setRotation((Float) animation.getAnimatedValue());
+            }
+        });
         showState(LOADING);
 //        refreshListenner.refresh();
     }
@@ -67,13 +79,16 @@ public class StateFulLayout extends LinearLayout {
             view.setVisibility(GONE);
             myView.setVisibility(VISIBLE);
             if (status == LOADING) {
+                Log.d("ccnb", "1");
                 textView.setVisibility(GONE);
                 refresh.setVisibility(GONE);
                 imageView.setImageResource(R.drawable.ic_iconfontshuaxin);
                 textView.setTextColor(getResources().getColor(R.color.blue));
-                revolve(imageView, true);
+                valueAnimator.start();
             } else {
-                revolve(imageView, false);
+                imageView.setRotation(0);
+                valueAnimator.cancel();
+//                revolve(false);
                 textView.setVisibility(VISIBLE);
                 refresh.setVisibility(VISIBLE);
                 if (status == EMPTY) {
@@ -89,25 +104,6 @@ public class StateFulLayout extends LinearLayout {
         }
     }
 
-    public void revolve(final ImageView target, boolean status) {
-        if (valueAnimator == null) {
-            valueAnimator = ValueAnimator.ofFloat(0f, 360f);
-            valueAnimator.setDuration(1000);
-            valueAnimator.setInterpolator(new LinearInterpolator());
-            valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
-            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    target.setRotation((Float) animation.getAnimatedValue());
-                }
-            });
-        }
-        if (status) {
-            valueAnimator.start();
-        } else {
-            valueAnimator.end();
-        }
-    }
 
     public interface RefreshListenner {
         void refresh();
