@@ -72,6 +72,8 @@ public class StateFulLayout extends LinearLayout {
     }
 
     public void showState(int status) {
+        imageView.setRotation(0);
+        valueAnimator.cancel();
         if (status == CONTENT) {
             view.setVisibility(VISIBLE);
             myView.setVisibility(GONE);
@@ -86,8 +88,8 @@ public class StateFulLayout extends LinearLayout {
                 textView.setTextColor(getResources().getColor(R.color.blue));
                 valueAnimator.start();
             } else {
-                imageView.setRotation(0);
-                valueAnimator.cancel();
+//                imageView.setRotation(0);
+//                valueAnimator.cancel();
 //                revolve(false);
                 textView.setVisibility(VISIBLE);
                 refresh.setVisibility(VISIBLE);
