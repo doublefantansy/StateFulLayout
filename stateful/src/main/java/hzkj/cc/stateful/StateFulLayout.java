@@ -1,7 +1,5 @@
 package hzkj.cc.stateful;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -42,7 +40,7 @@ public class StateFulLayout extends LinearLayout {
         refreshListenner = listenner;
         this.setOrientation(VERTICAL);
         myView = LayoutInflater.from(getContext())
-                .inflate(R.layout.empty, null);
+                .inflate(R.layout.statelayout_empty, null);
         imageView = myView.findViewById(R.id.image);
         textView = myView.findViewById(R.id.message);
         loadingImage = myView.findViewById(R.id.loadingImage);

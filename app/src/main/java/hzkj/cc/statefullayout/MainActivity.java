@@ -20,12 +20,11 @@ public class MainActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        layout.showState(StateFulLayout.NETERROR);
+                        layout.showState(StateFulLayout.EMPTY);
                     }
                 }, 1000);
             }
         }, layout1);
-        layout.showState(StateFulLayout.LOADING);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
