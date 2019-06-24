@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class StateFulLayout extends LinearLayout {
@@ -80,6 +81,8 @@ public class StateFulLayout extends LinearLayout {
             myView.setVisibility(VISIBLE);
             if (status == LOADING) {
                 Log.d("ccnb", "1");
+                RelativeLayout.LayoutParams layoutParams = ((RelativeLayout.LayoutParams) imageView.getLayoutParams());
+                layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
                 textView.setVisibility(GONE);
                 refresh.setVisibility(GONE);
                 imageView.setImageResource(R.drawable.ic_iconfontshuaxin);
@@ -89,6 +92,8 @@ public class StateFulLayout extends LinearLayout {
 //                imageView.setRotation(0);
 //                valueAnimator.cancel();
 //                revolve(false);
+                RelativeLayout.LayoutParams layoutParams = ((RelativeLayout.LayoutParams) imageView.getLayoutParams());
+                layoutParams.removeRule(RelativeLayout.CENTER_IN_PARENT);
                 textView.setVisibility(VISIBLE);
                 refresh.setVisibility(VISIBLE);
                 if (status == EMPTY) {
@@ -103,7 +108,6 @@ public class StateFulLayout extends LinearLayout {
             }
         }
     }
-
 
     public interface RefreshListenner {
         void refresh();
