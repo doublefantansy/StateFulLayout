@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        layout.showState(StateFulLayout.EMPTY);
+                        layout.showState(StateFulLayout.NETERROR);
                     }
                 }, 1000);
             }
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                layout.showState(StateFulLayout.EMPTY);
+                layout.showState(StateFulLayout.NETERROR);
             }
         }, 1000);
     }

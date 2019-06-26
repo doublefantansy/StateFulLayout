@@ -21,8 +21,8 @@ public class StateFulLayout extends LinearLayout {
     public final static int NETERROR = 10003;
     View myView;
     View view;
-    LinearLayout refresh;
-    ImageView loadingImage;
+    TextView refresh;
+    //    ImageView loadingImage;
     ImageView imageView;
     TextView textView;
     RefreshListenner refreshListenner;
@@ -44,7 +44,7 @@ public class StateFulLayout extends LinearLayout {
                 .inflate(R.layout.statelayout_empty, null);
         imageView = myView.findViewById(R.id.image);
         textView = myView.findViewById(R.id.message);
-        loadingImage = myView.findViewById(R.id.loadingImage);
+//        loadingImage = myView.findViewById(R.id.loadingImage);
         refresh = myView.findViewById(R.id.refresh);
         refresh.setOnClickListener(new OnClickListener() {
             @Override
@@ -81,29 +81,23 @@ public class StateFulLayout extends LinearLayout {
             myView.setVisibility(VISIBLE);
             if (status == LOADING) {
                 Log.d("ccnb", "1");
-                RelativeLayout.LayoutParams layoutParams = ((RelativeLayout.LayoutParams) imageView.getLayoutParams());
-                layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
-                textView.setVisibility(GONE);
+
+                textView.setText("数据加载中");
                 refresh.setVisibility(GONE);
                 imageView.setImageResource(R.drawable.ic_iconfontshuaxin);
-                textView.setTextColor(getResources().getColor(R.color.blue));
                 valueAnimator.start();
             } else {
-//                imageView.setRotation(0);
-//                valueAnimator.cancel();
-//                revolve(false);
-                RelativeLayout.LayoutParams layoutParams = ((RelativeLayout.LayoutParams) imageView.getLayoutParams());
-                layoutParams.removeRule(RelativeLayout.CENTER_IN_PARENT);
+
                 textView.setVisibility(VISIBLE);
                 refresh.setVisibility(VISIBLE);
                 if (status == EMPTY) {
                     textView.setText("暂无数据");
                     imageView.setImageResource(R.drawable.ic_kong_3);
-                    textView.setTextColor(getResources().getColor(R.color.red));
+//                    textView.setTextColor(getResources().getColor(R.color.red));
                 } else if (status == NETERROR) {
                     textView.setText("网络错误");
                     imageView.setImageResource(R.drawable.ic_wangluocuowu);
-                    textView.setTextColor(getResources().getColor(R.color.red));
+//                    textView.setTextColor(getResources().getColor(R.color.red));
                 }
             }
         }
