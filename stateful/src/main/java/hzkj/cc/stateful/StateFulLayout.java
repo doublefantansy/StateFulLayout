@@ -81,13 +81,11 @@ public class StateFulLayout extends LinearLayout {
             myView.setVisibility(VISIBLE);
             if (status == LOADING) {
                 Log.d("ccnb", "1");
-
                 textView.setText("数据加载中");
                 refresh.setVisibility(GONE);
                 imageView.setImageResource(R.drawable.ic_iconfontshuaxin);
                 valueAnimator.start();
             } else {
-
                 textView.setVisibility(VISIBLE);
                 refresh.setVisibility(VISIBLE);
                 if (status == EMPTY) {
